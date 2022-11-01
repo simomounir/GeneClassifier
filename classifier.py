@@ -1,10 +1,8 @@
-
-from matplotlib import pyplot 
 import pandas as pd
 import seaborn as sns
 
 
-### Machine Learning 
+### Machine Learning
 
 from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
@@ -134,14 +132,14 @@ class GeneClassifier(BaseEstimator, ClassifierMixin):
         Y = pd.DataFrame(self.y_,columns=['Class'])
         X_reduced = pd.concat([X_reduced.reset_index().drop(['index'],axis=1),Y.reset_index().drop(['index'],axis=1)], axis=1)
 
-        return sns.pairplot(x_vars=0, y_vars=1, data=X_reduced, hue="Class",palette="YlGnBu",size=7,aspect=1.2).fig.suptitle( str(type(self.reduction)).rsplit("'")[1])
+        return sns.pairplot(x_vars=0, y_vars=1, data=X_reduced, hue="Class",palette="YlGnBu",height=7,aspect=1.2).fig.suptitle( str(type(self.reduction)).rsplit("'")[1])
 
     def plot_balancing(self):
         """plot balanced data vs original data count .This method returns a seaborn plot
 
         Parameters
         ----------
-        NONE.  
+        NONE. 
         """
         check_is_fitted(self)
         balanced = pd.DataFrame(self.X_balanced)
