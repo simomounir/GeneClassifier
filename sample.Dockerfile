@@ -13,12 +13,10 @@ RUN pip3 --version
 WORKDIR  /usr/src/GeneClassifier
 
 # Installing python dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir git+https:https://github.com/simomounir/GeneClassifier.git
 
 # Copy all the files from the project’s root to the working directory
 COPY example.py example.py
-COPY classifier.py classifier.py
 RUN ls -la /*
 
 # Running Python Application

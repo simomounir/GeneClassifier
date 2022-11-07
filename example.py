@@ -1,7 +1,7 @@
 
 from sklearn.model_selection import train_test_split, GridSearchCV
 print("hello")
-from classifier import GeneClassifier
+from geneclassifier.clf import GeneClassifier
 import pandas as pd
 from matplotlib import pyplot 
 import pandas as pd
