@@ -1,5 +1,8 @@
+# Authors: Simo Mounir <mounir.mohamed92@gmail.com>
+#          
+# License: BSD 3 clause
 
-from matplotlib import pyplot 
+from matplotlib import pyplot
 import pandas as pd
 import seaborn as sns
 
@@ -12,17 +15,16 @@ from sklearn.utils.multiclass import unique_labels
 from imblearn.over_sampling import SMOTE
 
 class GeneClassifier(BaseEstimator, ClassifierMixin):
-    """
-        A class used to build a classifier using gene expression data
+    """A class used to build a classifier using multidimensional data
 
     ...
 
     Attributes
     ----------
     model : BaseEstimator
-        model to use for fitting and predicting 
+        model to use for fitting and prediction
     reduction : BaseTransformer
-        the method used for dimensionality reduction
+        the method used for dimensionality reduction from sklearn.decomposition
 
 
     Methods
@@ -64,19 +66,27 @@ class GeneClassifier(BaseEstimator, ClassifierMixin):
 
 
     def fit(self, X, y):
-        """
-            Fitting model according to chosen model 
+        """Fit estimator
 
-        The model passed as an argument should be in the sklearn family of Classifiers
+    Parameters
+    ----------
+    estimator : estimator object implementing 'fit' method
+        The object to use to fit the data.
+    X : array-like of shape (n_samples, n_features)
+        The data to fit.
+    y : array-like of shape (n_samples,) or (n_samples, n_outputs)
+        The target values
 
-        Parameters
-        ----------
-        X : str, optional
-            gene expression data
-        y : labels of classes
+    Returns
+
+    self : object
+        Trained classifier.
+    -------
         
+
         """
-        # Check that X and y have correct shape
+        # Check that X and y 
+        # have correct shape
         X, y = check_X_y(X, y)
         # Store the classes seen during fit
         self.X_ = X
@@ -93,12 +103,16 @@ class GeneClassifier(BaseEstimator, ClassifierMixin):
     def predict(self, X):
         """Use fitted model to generate predictions. 
 
-        The model used should be checked whether it was fitted. This method returns the predicted labels
-
+            The model used should be checked whether it was fitted. This method returns the predicted labels
+        
         Parameters
         ----------
-        X : gene expression data
+        X : ndarray of shape (n_samples, n_features)
+            The input data.
 
+        Returns
+        -------
+        y : ndarray of shape (n_samples,) or (n_samples, n_outputs)
         """
         # Check if fit has been called
         check_is_fitted(self)
@@ -110,23 +124,32 @@ class GeneClassifier(BaseEstimator, ClassifierMixin):
         return self.model.predict(X_tansformed)
 
     def transform(self, X):
-        """Transforms gene expression data according to valid reduction model and returns it. 
+        """Transforms X data according to valid reduction model and returns it. 
 
         Parameters
         ----------
-        X : gene expression data
+        X : ndarray of shape (n_samples, n_features)
+            The input data.
         
+        Returns
+        -------
+        X : ndarray of shape (n_samples,) or (n_samples, n_outputs) of reduced/transformed data
         """
-        # Check if fit has been called
+        # Check if fit has been called. from sklearn
         check_is_fitted(self)
         return self.reduction.transform(X)
 
     def plot_reduction_model(self):
-        """plot transformed data with dimensionality reduction.This method returns a seaborn plot
-
+        """plot transformed data with dimensionality reduction. This method returns a seaborn plot
+        
         Parameters
         ----------
-        NONE. Plotting data from object X_reduced holding transformed data    
+        X : ndarray of shape (n_samples, n_features)
+            The input data.
+
+        Returns
+        -------
+        sns pairplot object: transformed X
         """
         
         check_is_fitted(self)
@@ -139,9 +162,10 @@ class GeneClassifier(BaseEstimator, ClassifierMixin):
     def plot_balancing(self):
         """plot balanced data vs original data count .This method returns a seaborn plot
 
-        Parameters
-        ----------
-        NONE.  
+        Returns
+        -------
+        sns countplot object: balanced X data
+
         """
         check_is_fitted(self)
         balanced = pd.DataFrame(self.X_balanced)
