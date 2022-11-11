@@ -1,4 +1,5 @@
 .. -*- mode: rst -*-
+
 .. image:: https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold
     :alt: Project generated with PyScaffold
     :target: https://pyscaffold.org/
@@ -8,14 +9,17 @@
     :target: https://www.linkedin.com/in/mohamed-mounir/
 
 |
+|
 
+==============
 GeneClassifier
-------------
+==============
 
     Package that uses dimensionality reduction and classification model from sklearn, keeping compatibility with the rest of the sklearn framework
-
+  
+==============
 Installation
-------------
+==============
 The package can be installed by directly cloning from repository::
 
     git clone https://github.com/simomounir/GeneClassifier.git
@@ -25,9 +29,9 @@ Or by running ``pip``::
     pip install git+https:https://github.com/simomounir/GeneClassifier.git
 
 
-
+==============
 Important links  / Markdown
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+==============
 
 - [sklearn-url]: https://scikit-learn.org/stable/
 - [seaborn-url]: https://seaborn.pydata.org/
